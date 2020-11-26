@@ -26,17 +26,32 @@ import org.apache.activemq.artemis.core.protocol.core.impl.wireformat.SessionSen
 import org.apache.activemq.artemis.spi.core.protocol.RemotingConnection;
 import org.jboss.logging.Logger;
 
+/**
+ * @author  Tyronne W
+ * @since   26-11-2020
+ * @version 1.0
+ * This class would not allow creating or accessing an address carrying an asterisk ('*').
+ * Broker configuration:
+ *      <remoting-incoming-interceptors>
+ *          <class-name>org.jboss.labs.amq.intercept.IncomingInterceptor</class-name>
+ *      </remoting-incoming-interceptors>
+ *
+ *
+ *
+ */
+
 public class IncomingInterceptor implements Interceptor {
 
-    private static Logger log = Logger.getLogger(IncomingInterceptor.class);
+    private static final Logger log = Logger.getLogger(IncomingInterceptor.class);
+
     public boolean intercept(final Packet packet, final RemotingConnection connection) throws ActiveMQException {
         log.trace(Interceptor.class.getName() + " called");
-        log.trace("Processing packet: " + packet.getClass().getName() + " that camme from " + connection.getRemoteAddress() +".");
+        log.trace("Processing packet: " + packet.getClass().getName() + " that came from " + connection.getRemoteAddress() +".");
         log.trace("RemotingConnection: " + connection.getRemoteAddress() + " with client ID = " + connection.getID());
 
-        /**
-         * This condition would prevent clients creating new destinations matching the given condition.
-         */
+
+        //This condition would prevent clients creating new addresses matching the given condition.
+
         if(packet instanceof CreateAddressMessage){
             CreateAddressMessage cam = (CreateAddressMessage) packet;
             if(cam.getAddress().contains('*')){
@@ -46,10 +61,10 @@ public class IncomingInterceptor implements Interceptor {
             }
         }
 
-        /**
-         * This condition would prevent accessing a destination that has already been created; matching the given criteria.
-         * This condition can be commented out should there be no destinations matching the '*'.
-         */
+
+//        This condition would prevent accessing an address that has already been created; matching the given criteria.
+//        This condition can be commented out should there be no destinations matching the '*'.
+
         if(packet instanceof SessionSendMessage){
             SessionSendMessage sessionSendMessage = (SessionSendMessage) packet;
             Message amqMessage = sessionSendMessage.getMessage();
