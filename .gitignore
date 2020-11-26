@@ -1,0 +1,4 @@
+# Project exclude paths
+/amq-interceptor/target/
+/amq-jmx/target/
+/amq-server-plugin/target/
