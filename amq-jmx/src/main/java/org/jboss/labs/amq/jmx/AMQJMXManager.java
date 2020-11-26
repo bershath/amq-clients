@@ -10,7 +10,9 @@ import javax.management.remote.JMXServiceURL;
 import java.util.HashMap;
 
 /**
- * Author : Tyronne
+ * @author  : Tyronne W
+ * @since   : 26-11-2020
+ * @version : 1.0
  * This class would create a durable destination using the Artemis API and assigns security by role
  * Please enable jmx-management-enabled property in the broker.xml file:
  * <jmx-management-enabled>true</jmx-management-enabled>
