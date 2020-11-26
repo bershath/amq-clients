@@ -21,12 +21,21 @@ import org.apache.activemq.artemis.core.server.impl.AddressInfo;
 import org.apache.activemq.artemis.core.server.plugin.ActiveMQServerPlugin;
 import org.jboss.logging.Logger;
 
+/**
+ * @author  : Tyronne
+ * @since   : 26-11-2020
+ * @version : 1.0
+ *
+ * This class implements the ActiveMQServerPlugin interface and override beforeAddAddress() to prevent messaging
+ * clients creating addresses that contain an asterisk ('*')
+ *
+ */
 public class AddressPlugin implements ActiveMQServerPlugin {
-    private static Logger log = Logger.getLogger(AddressPlugin.class);
+    private static final Logger log = Logger.getLogger(AddressPlugin.class);
     @Override
     public void beforeAddAddress(AddressInfo addressInfo, boolean reload) throws ActiveMQException {
         if(addressInfo.getName().contains('*')){
-            log.warn("Attempting to create "+ addressInfo.getName() +". Denied!");
+            log.warn("Attempting to create "+ addressInfo.getName() +" address. Denied!");
             throw new ActiveMQException("Address "+ addressInfo.getName() + " creation not permitted. Address name must not contain an asterisk ('*') ");
         }
     }
