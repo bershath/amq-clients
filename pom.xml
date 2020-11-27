@@ -12,7 +12,7 @@
         <module>amq-jmx</module>
         <module>amq-interceptor</module>
         <module>amq-server-plugin</module>
-        <module>amq-server-plugin-noxml</module>
+        <module>amq-jms</module>
     </modules>
 
 </project>
