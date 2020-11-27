@@ -29,6 +29,11 @@ import org.jboss.logging.Logger;
  * This class implements the ActiveMQServerPlugin interface and override beforeAddAddress() to prevent messaging
  * clients creating addresses that contain an asterisk ('*')
  *
+ * Broker configuration, in broker.xml:
+ *      <broker-plugins>
+ *    	    <broker-plugin class-name="org.jboss.labs.amq.server.plugin.AddressPlugin"/>
+ * 	    </broker-plugins>
+ *
  */
 public class AddressPlugin implements ActiveMQServerPlugin {
     private static final Logger log = Logger.getLogger(AddressPlugin.class);
