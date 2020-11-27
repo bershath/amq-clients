@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="amq-interceptor" />
         <module name="amq-server-plugin" />
+        <module name="amq-server-plugin-noxml" />
         <module name="amq-jmx" />
       </profile>
     </annotationProcessing>
