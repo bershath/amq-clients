@@ -44,7 +44,7 @@ import org.jboss.logging.Logger;
 
 public class AddressCheckInterceptor implements Interceptor {
 
-    private static final Logger log = Logger.getLogger(IncomingInterceptor.class);
+    private static final Logger log = Logger.getLogger(AddressCheckInterceptor.class);
 
     public boolean intercept(final Packet packet, final RemotingConnection connection) throws ActiveMQException {
         log.trace(Interceptor.class.getName() + " called");
