@@ -55,12 +55,12 @@ public class AddressCheckInterceptor implements Interceptor {
         //This condition would prevent clients creating new addresses matching the given condition.
 
         if(packet instanceof CreateAddressMessage){
-            CreateAddressMessage cam = (CreateAddressMessage) packet;
-            if(cam.getAddress().contains('*')){
+            CreateAddressMessage createAddressMessage = (CreateAddressMessage) packet;
+            if(createAddressMessage.getAddress().contains('*')){
                 RemotingConnectionImpl remotingConnectionImpl = (RemotingConnectionImpl) connection;
                 Channel channel = remotingConnectionImpl.getChannel(packet.getChannelID(), -1);
-                log.info("A client from "+ connection.getRemoteAddress() + " tried to create " + cam.getAddress() +  ". Denied permission "  );
-                ActiveMQException exception = new ActiveMQException("Address " + cam.getAddress() + " creation not permitted. Address name must not contain an asterisk ('*') ");
+                log.info("A client from "+ connection.getRemoteAddress() + " tried to create " + createAddressMessage.getAddress() +  ". Denied permission "  );
+                ActiveMQException exception = new ActiveMQException("Address " + createAddressMessage.getAddress() + " creation not permitted. Address name must not contain an asterisk ('*') ");
                 Packet exceptionPacket = new ActiveMQExceptionMessage(exception);
                 channel.sendAndFlush(exceptionPacket);
                 connection.destroy();
