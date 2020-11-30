@@ -1,5 +1,7 @@
 package org.jboss.labs.amq.jms;
 
+import org.apache.activemq.artemis.jms.client.ActiveMQConnectionFactory;
+
 import javax.jms.ConnectionFactory;
 import javax.jms.JMSContext;
 import javax.jms.JMSException;
@@ -7,8 +9,6 @@ import javax.jms.JMSProducer;
 import javax.jms.Queue;
 import javax.jms.TextMessage;
 import javax.naming.Context;
-import javax.naming.NamingException;
-import org.apache.activemq.artemis.jms.client.ActiveMQConnectionFactory;
 
 public class AMQMessageProducer {
     public static Context context;
