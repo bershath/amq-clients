@@ -18,10 +18,13 @@
 package org.jboss.labs.amq.intercept;
 
 import org.apache.activemq.artemis.api.core.ActiveMQException;
+import org.apache.activemq.artemis.api.core.ICoreMessage;
 import org.apache.activemq.artemis.api.core.Interceptor;
 import org.apache.activemq.artemis.api.core.Message;
+import org.apache.activemq.artemis.core.message.impl.CoreMessage;
 import org.apache.activemq.artemis.core.protocol.core.Packet;
 import org.apache.activemq.artemis.core.protocol.core.impl.wireformat.CreateAddressMessage;
+import org.apache.activemq.artemis.core.protocol.core.impl.wireformat.MessagePacket;
 import org.apache.activemq.artemis.core.protocol.core.impl.wireformat.SessionSendMessage;
 import org.apache.activemq.artemis.spi.core.protocol.RemotingConnection;
 import org.jboss.logging.Logger;
@@ -48,6 +51,7 @@ public class IncomingInterceptor implements Interceptor {
         log.trace(Interceptor.class.getName() + " called");
         log.trace("Processing packet: " + packet.getClass().getName() + " that came from " + connection.getRemoteAddress() +".");
         log.trace("RemotingConnection: " + connection.getRemoteAddress() + " with client ID = " + connection.getID());
+
 
 
         //This condition would prevent clients creating new addresses matching the given condition.
