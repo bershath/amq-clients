@@ -73,7 +73,7 @@ public class ExpireMessageJMX {
                     queueControl.expireMessage(Long.parseLong(messageID));
                     System.out.println("Message with id " + messageID + " is older than the specified period, expired");
                 } else{
-                    System.out.println("Message is new ");
+                    System.out.println("Message is new, skipping");
                 }
             }
             System.out.println("Number of messages in the destination : " + queueControl.countMessages());
