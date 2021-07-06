@@ -23,12 +23,14 @@ import java.util.HashMap;
 public class AMQQueueJMXManager {
     private static final String JMX_URL = "service:jmx:rmi:///jndi/rmi://localhost:1099/jmxrmi";
     private static  final String queueName = "exampleQueue";
+    private static  final String userName = "admin";
+    private static  final String password = "jboss100";
 
     public static void main(String[] args){
         try {
             JMXServiceURL jmxServiceURL = new JMXServiceURL(JMX_URL);
             HashMap credentialsMap = new HashMap();
-            String[] userCredentials = {"admin", "jboss100"};
+            String[] userCredentials = {userName, password};
             credentialsMap.put(JMXConnector.CREDENTIALS, userCredentials);
             JMXConnector jmxConnector = JMXConnectorFactory.connect(jmxServiceURL, credentialsMap);
             MBeanServerConnection connection = jmxConnector.getMBeanServerConnection();
