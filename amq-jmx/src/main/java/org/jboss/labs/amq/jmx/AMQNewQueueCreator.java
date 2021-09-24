@@ -38,7 +38,7 @@ public class AMQNewQueueCreator {
             ObjectName objectName  =  ObjectName.getInstance("org.apache.activemq.artemis:broker=\"0.0.0.0\"");
             ActiveMQServerControl activeMQServerControl = MBeanServerInvocationHandler.newProxyInstance(connection,objectName,ActiveMQServerControl.class,false);
             activeMQServerControl.createQueue(queueName, true);
-            //activeMQServerControl.addSecuritySettings(addressName,"amq","","amq","","amq","","");
+            //activeMQServerControl.addSecuritySettings(addressName,"amq","","amq","","amq","",""); //You need to leave back to set 'false' to a particular operation
             //addSecuritySettings(String addressMatch, String sendRoles, String consumeRoles, String createDurableQueueRoles, String deleteDurableQueueRoles, String createNonDurableQueueRoles, String deleteNonDurableQueueRoles, String manageRoles, String browseRoles, String createAddressRoles, String deleteAddressRoles)
             activeMQServerControl.addSecuritySettings(addressName, "amq", "amq","amq","amq","amq", "amq", "amq","amq", "amq","amq");
             jmxConnector.close();
