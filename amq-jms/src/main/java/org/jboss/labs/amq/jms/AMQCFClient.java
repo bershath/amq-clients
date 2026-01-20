@@ -7,6 +7,7 @@ import javax.jms.MessageProducer;
 import javax.jms.Queue;
 import javax.jms.Session;
 import javax.jms.TextMessage;
+import java.util.Date;
 
 public class AMQCFClient {
 
@@ -21,6 +22,7 @@ public class AMQCFClient {
             Queue queue = session.createQueue("A"); //This would not create a new destination but offers a reference to an existing destination
             MessageProducer messageProducer = session.createProducer(queue);
             TextMessage textMessage = session.createTextMessage("Test text message");
+            textMessage.setJMSTimestamp(new Date().getTime());
             messageProducer.send(textMessage);
         } catch(JMSException e){
             e.printStackTrace();
