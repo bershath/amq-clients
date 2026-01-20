@@ -48,5 +48,4 @@ public class ProtocolCheckerInterceptor implements AmqpInterceptor {
         packet.putStringProperty("protocol","AMQP");
         return true;
     }
-
 }
