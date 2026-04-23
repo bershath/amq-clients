@@ -39,7 +39,6 @@ public class JakartaMessageSender {
         }
     }
 
-
     private Context getContext() throws NamingException {
         Properties props = new Properties();
         props.put(Context.INITIAL_CONTEXT_FACTORY,"org.apache.activemq.artemis.jndi.ActiveMQInitialContextFactory");
