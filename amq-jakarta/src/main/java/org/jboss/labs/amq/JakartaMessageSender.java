@@ -17,7 +17,6 @@ public class JakartaMessageSender {
 
     public static Context context;
     public static ConnectionFactory connectionFactory;
-    public static final int numOfMessages = 1;
     public static final String connectionFactoryStr = "ConnectionFactory";
     private static final String queueNameStr = "A";
     private static final String userName = "admin";
@@ -29,11 +28,9 @@ public class JakartaMessageSender {
         try(JMSContext jmsContext = getConnectionFactory().createContext(userName, password)){
             Queue queue = jmsContext.createQueue(queueNameStr);
             JMSProducer jmsProducer = jmsContext.createProducer();
-            for (int i = 1; i <= numOfMessages; i++) {
-                TextMessage textMessage = jmsContext.createTextMessage();
-                textMessage.setText("Message MyKey");
-                jmsProducer.send(queue, textMessage);
-            }
+            TextMessage textMessage = jmsContext.createTextMessage();
+            textMessage.setText("Message from Jakarta Message Sender ");
+            jmsProducer.send(queue, textMessage);
             JMSConsumer jmsConsumer = jmsContext.createConsumer(queue);
             TextMessage receivedMessage = (TextMessage) jmsConsumer.receive(30000);
             System.out.println(receivedMessage.getBody(String.class));
